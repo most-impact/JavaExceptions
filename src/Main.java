@@ -1,5 +1,6 @@
 import models.UserCredential;
-import exception.ValidationException;
+import exception.WrongLoginException;
+import exception.WrongPasswordException;
 
 import java.util.Scanner;
 
@@ -20,8 +21,10 @@ public class Main {
             UserCredential.validate(login, password, confirmPassword);
             UserCredential user = new UserCredential(login, password);
             System.out.println("User credentials are valid.");
-        } catch (ValidationException e) {
-            System.out.println("Validation error: " + e.getMessage());
+        } catch (WrongLoginException e) {
+            System.out.println("Login validation error: " + e.getMessage());
+        } catch (WrongPasswordException e) {
+            System.out.println("Password validation error: " + e.getMessage());
         }
     }
 }
